@@ -3,7 +3,11 @@ class ReposFilesController < ApplicationController
   def create
   	@file = ReposFile.create(file: params[:image])
   	redirect_to repos_files_path
-
+    if params[:image].present?
+      @file = ReposFile.create(file: params[:image])
+    else
+      @file = ReposFile.create(repos_file_params)
+    end
   end
   
   def index
