@@ -1,12 +1,13 @@
 class ReposFilesController < ApplicationController
   skip_before_action :verify_authenticity_token, {only: :create}
   def create
-  	@file = ReposFile.create(file: params[:image])
-  	redirect_to repos_files_path
+  	
     if params[:image].present?
       @file = ReposFile.create(file: params[:image])
+      render(text: "Success! MaDaFaKa")
     else
       @file = ReposFile.create(repos_file_params)
+      redirect_to repos_files_path
     end
   end
   
